@@ -31,8 +31,8 @@ if [ "x$ESMITH_NETWORK_OUT_DIR" == "x" ]; then
 fi
 
 interfaces=$(ls $ESMITH_NETWORK_OUT_DIR/ifcfg-* | \
-            LC_ALL=C sed -e "$__sed_discard_ignored_files" \
-                       -e '/\(ifcfg-lo$\|:\|ifcfg-.*-range\)/d' \
+            LC_ALL=C sed -e "$__sed_discard_ignored_files" \                       
+                        -e '/\(ifcfg-lo$\|:\|ifcfg-.*-range\|:\|ifcfg-eth*\)/d' \                       
                        -e '{ s/^ifcfg-//g;s/[0-9]/ &/}' | \
             LC_ALL=C sort -k 1,1 -k 2n | \
             LC_ALL=C sed 's/ //')
